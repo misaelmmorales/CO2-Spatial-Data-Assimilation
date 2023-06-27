@@ -1,0 +1,205 @@
+ 
+ 
+*               * * * * * * * * * * * * * * * * * * * * * * * *                 
+*               *                                             *                 
+*               *    Program:  LaGriT V3.300   Linux          *                 
+*               *    date_compile: 2017/10/25 Release         *                 
+*               *    Run Time: 2018/Jul  6  10:11:00          *                 
+*               *    Manual:   http://lagrit.lanl.gov         *                 
+*               *                                             *                 
+*               * * * * * * * * * * * * * * * * * * * * * * * *                 
+ 
+                               -----oOo-----                                    
+             LaGriT V3 LA-CC-15-069  https://github.com/lanl/LaGriT             
+Copyright 2015. Los Alamos National Security, LLC.  This software was produced  
+under U.S. Government contract DE-AC52-06NA25396 for Los Alamos National        
+Laboratory (LANL), which is operated by Los Alamos National Security, LLC       
+for the U.S. Department of Energy. The U.S. Government has rights to use,       
+reproduce, and distribute this software. Neither the  government nor Los Alamos 
+National Security, LLC makes any warranty, express or  implied, or assumes any  
+liability for the use of this software. If software is modified to produce      
+derivative works, such modified software should be  clearly marked, so as not   
+to confuse it with the version available from LANL.                             
+                               -----oOo-----                                    
+ 
+ 
+Output log file: outx3dgen                                                      
+Command log file: logx3dgen                                                     
+ 
+cmo/create/mo1/0/0/tet                                                          
+cmo select mo1                                                                  
+read/gridder.inp/mo1                                                            
+read/avs/gridder.inp/mo1                                                        
+cmo/status/brief                                                                
+ 
+The current-mesh-object(CMO) is: mo1                                            
+ 
+  1 Mesh Object name: mo1                                                       
+    number of nodes =         28611        number of elements =            0    
+    dimensions geometry =         3        element type =                tet    
+    dimensions topology =         3        4 nodes      4 faces      6 edges    
+    boundary flag =        16000000        status =                   active    
+ 
+ 
+finish                                                                          
+finish                                                                          
+cmo select mo1                                                                  
+connect/delaunay                                                                
+ No materials associated with     28611 noninterface points.                    
+ Coordinates of enclosing tetrahedron are:                                      
+          -0.50000D+04   -0.50000D+04   -0.19000D+04                            
+          -0.50000D+04    0.15000D+05   -0.11500D+04                            
+          -0.50000D+04   -0.50000D+04   -0.40000D+03                            
+           0.15000D+05    0.00000D+00   -0.11500D+04                            
+ ntets=     29477     node index=     5000     nlstfail=       0 %done=  17.17  
+ ntets=     60448     node index=    10000     nlstfail=       0 %done=  35.21  
+ ntets=     89025     node index=    15000     nlstfail=       0 %done=  51.85  
+ ntets=    118806     node index=    20000     nlstfail=       0 %done=  69.20  
+ ntets=    147582     node index=    25000     nlstfail=       0 %done=  85.96  
+ Candidate connections that may cross boundaries =     28334                    
+ 
+ Successfully eliminated all multimaterial connections.                         
+ 
+ The mesh is now complete!                                                      
+ 
+LaGriT FINISH: connect                                                          
+ 
+cmo/printatt/mo1/-xyz- minmax                                                   
+ATTRIBUTE NAME              MIN               MAX         DIFFERENCE    LENGTH  
+ xic               -2.000000000E+03  2.000000000E+03 4.000000000E+03     28611  
+ yic               -2.000000000E+03  2.000000000E+03 4.000000000E+03     28611  
+ zic               -1.300000000E+03 -1.000000000E+03 3.000000000E+02     28611  
+ 
+cmo select mo1                                                                  
+cmo/printatt/mo1/-xyz-/minmax                                                   
+ATTRIBUTE NAME              MIN               MAX         DIFFERENCE    LENGTH  
+ xic               -2.000000000E+03  2.000000000E+03 4.000000000E+03     28611  
+ yic               -2.000000000E+03  2.000000000E+03 4.000000000E+03     28611  
+ zic               -1.300000000E+03 -1.000000000E+03 3.000000000E+02     28611  
+ 
+cmo select mo1                                                                  
+cmo/printatt/mo1/-xyz-/minmax                                                   
+ATTRIBUTE NAME              MIN               MAX         DIFFERENCE    LENGTH  
+ xic               -2.000000000E+03  2.000000000E+03 4.000000000E+03     28611  
+ yic               -2.000000000E+03  2.000000000E+03 4.000000000E+03     28611  
+ zic               -1.300000000E+03 -1.000000000E+03 3.000000000E+02     28611  
+ 
+cmo select mo1                                                                  
+cmo/printatt/mo1/-xyz-/minmax                                                   
+ATTRIBUTE NAME              MIN               MAX         DIFFERENCE    LENGTH  
+ xic               -2.000000000E+03  2.000000000E+03 4.000000000E+03     28611  
+ yic               -2.000000000E+03  2.000000000E+03 4.000000000E+03     28611  
+ zic               -1.300000000E+03 -1.000000000E+03 3.000000000E+02     28611  
+ 
+cmo select mo1                                                                  
+cmo/printatt/mo1/-xyz-/minmax                                                   
+ATTRIBUTE NAME              MIN               MAX         DIFFERENCE    LENGTH  
+ xic               -2.000000000E+03  2.000000000E+03 4.000000000E+03     28611  
+ yic               -2.000000000E+03  2.000000000E+03 4.000000000E+03     28611  
+ zic               -1.300000000E+03 -1.000000000E+03 3.000000000E+02     28611  
+ 
+cmo select mo1                                                                  
+pset/p1/geom/xyz/1,0,0/-2000.0,-2000.0,-1300.0/2000.0,2000.0,-1000.0/0,0,0      
+ 
+ THE PSET  p1  HAS      28611 POINTS                                            
+cmo select mo1                                                                  
+cmo/setatt/mo1/imt/pset get p1/11                                               
+     28611 values reset for attribute imt1                                      
+ 
+cmo select mo1                                                                  
+resetpts/itp                                                                    
+geniee                                                                          
+finish                                                                          
+cmo select mo1                                                                  
+dump/fehm/mesh/mo1                                                              
+*** Write FEHMN GEOM AND ZONE FILES ***                                         
+*********dump_material_lists********                                            
+Minimum material ID value =     11                                              
+Maximum material ID value =     11                                              
+Total possible materials  =      1                                              
+Material          11 has     28611 nodes. #nodes/nnodes is    1.00000000000     
+*********dump_interface_list********                                            
+*********dump_multi_material_list********                                       
+log/tty/off                                                                     
+finish                                                                          
+*********dump_outside_list********                                              
+Voronoi Areas used for outside faces.                                           
+ 
+assign_quadrant_id epsilon for zero:   1.0000000E-15                            
+cmo/addatt/mo1/top/vint/scalar/nnodes/linear/permanent/afgx/-5.0/               
+finish                                                                          
+Face top           1 has      2601 nodes.                                       
+top        Sum Voronoi      Area_x          Area_y          Area_z              
+                       0.1200000E+06   0.1200000E+06   0.1600000E+08            
+cmo/addatt/mo1/bottom/vint/scalar/nnodes/linear/permanent/afgx/-5.0/            
+finish                                                                          
+Face bottom        2 has      2601 nodes.                                       
+bottom     Sum Voronoi      Area_x          Area_y          Area_z              
+                       0.1200000E+06   0.1200000E+06   0.1600000E+08            
+cmo/addatt/mo1/left_w/vint/scalar/nnodes/linear/permanent/afgx/-5.0/            
+finish                                                                          
+Face left_w        3 has       561 nodes.                                       
+left_w     Sum Voronoi      Area_x          Area_y          Area_z              
+                       0.1200000E+07   0.2400000E+05   0.3200000E+06            
+cmo/addatt/mo1/right_e/vint/scalar/nnodes/linear/permanent/afgx/-5.0/           
+finish                                                                          
+Face right_e       5 has       561 nodes.                                       
+right_e    Sum Voronoi      Area_x          Area_y          Area_z              
+                       0.1200000E+07   0.2400000E+05   0.3200000E+06            
+cmo/addatt/mo1/back_n/vint/scalar/nnodes/linear/permanent/afgx/-5.0/            
+finish                                                                          
+Face back_n        6 has       561 nodes.                                       
+back_n     Sum Voronoi      Area_x          Area_y          Area_z              
+                       0.2400000E+05   0.1200000E+07   0.3200000E+06            
+cmo/addatt/mo1/front_s/vint/scalar/nnodes/linear/permanent/afgx/-5.0/           
+finish                                                                          
+Face front_s       4 has       561 nodes.                                       
+front_s    Sum Voronoi      Area_x          Area_y          Area_z              
+                       0.2400000E+05   0.1200000E+07   0.3200000E+06            
+cmo/DELATT//top                                                                 
+finish                                                                          
+cmo/DELATT//bottom                                                              
+finish                                                                          
+cmo/DELATT//left_w                                                              
+finish                                                                          
+cmo/DELATT//right_e                                                             
+finish                                                                          
+cmo/DELATT//back_n                                                              
+finish                                                                          
+cmo/DELATT//front_s                                                             
+finish                                                                          
+log/tty/on                                                                      
+finish                                                                          
+*********dump_parent_list********                                               
+ 
+*** Construct and Compress Sparse Matrix:3D ***                                 
+   *** Compress Area Coefficient Values ***                                     
+ 
+AMatbld3d_stor: Matrix compress_eps:  0.1000000E-07                             
+AMatbld3d_stor: Local epsilon:  0.1000000E-14                                   
+AMatbld3d_stor: *****Zero Negative Coefficients ******                          
+AMatbld3d_stor: Number of 'zero' (< compress_eps) coefs         0               
+AMatbld3d_stor: npoints =    28611  ncoefs =     192831                         
+AMatbld3d_stor: Number of unique coefs =         7                              
+AMatbld3d_stor: Maximum num. connections to a node =          7                 
+AMatbld3d_stor: Volume min =   2.4000000E+04                                    
+AMatbld3d_stor: Volume max =   1.9200000E+05                                    
+AMatbld3d_stor: Total Volume:   4.8000000E+09                                   
+AMatbld3d_stor: abs(Aij/xij) min =   0.0000000E+00                              
+AMatbld3d_stor: abs(Aij/xij) max =   2.1333333E+02                              
+AMatbld3d_stor: (Aij/xij) max =   0.0000000E+00                                 
+AMatbld3d_stor: (Aij/xij) min =  -2.1333333E+02                                 
+AMatbld3d_stor Matrix coefficient values stored as scalar area/distance         
+AMatbld3d_stor Matrix compression used for graph and coefficient values         
+ascii STOR file written with name mesh.stor                                     
+ 
+*** SPARSE COEFFICIENT MATRIX _astor SUCCESSFUL ***                             
+ 
+3D Matrix Coefficient file written with name mesh.stor                          
+ 
+cmo select mo1                                                                  
+dump/avs/mesh.inp/mo1                                                           
+cmo/modatt/-def-/-def-/ioflag/x                                                 
+finish                                                                          
+unexpected eof-command ignored                                                  
+empty command stack or other stack error revert to previous mode                

@@ -1,0 +1,24 @@
+cmo/create/mo1/0/0/tet                                                          
+cmo select mo1                                                                  
+read/gridder.inp/mo1                                                            
+cmo select mo1                                                                  
+connect/delaunay                                                                
+cmo/printatt/mo1/-xyz- minmax                                                   
+cmo select mo1                                                                  
+cmo/printatt/mo1/-xyz-/minmax                                                   
+cmo select mo1                                                                  
+cmo/printatt/mo1/-xyz-/minmax                                                   
+cmo select mo1                                                                  
+cmo/printatt/mo1/-xyz-/minmax                                                   
+cmo select mo1                                                                  
+cmo/printatt/mo1/-xyz-/minmax                                                   
+cmo select mo1                                                                  
+pset/p1/geom/xyz/1,0,0/-2000.0,-2000.0,-1300.0/2000.0,2000.0,-1000.0/0,0,0      
+cmo select mo1                                                                  
+cmo/setatt/mo1/imt/pset get p1/11                                               
+cmo select mo1                                                                  
+resetpts/itp                                                                    
+cmo select mo1                                                                  
+dump/fehm/mesh/mo1                                                              
+cmo select mo1                                                                  
+dump/avs/mesh.inp/mo1                                                           

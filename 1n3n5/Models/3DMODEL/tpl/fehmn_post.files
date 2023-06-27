@@ -1,0 +1,12 @@
+input: case01_post.dat
+grida: ../../../mesh/mesh.fehmn
+rsto: run.rsto
+outp: run.out
+check: run.chk
+rsti: ../../../init1/run.rsto
+co2in: ../../../co2_interp_table.txt
+stor: ../../../mesh/mesh.stor
+root:run
+
+all
+999

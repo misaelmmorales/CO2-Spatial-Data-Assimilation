@@ -1,0 +1,547 @@
+FEHM V3.3.0lin 18-01-19 QA:NA    07/06/2018    10:13:46
+
+Copyright  2015.   Los Alamos National Security, LLC.  This material was
+produced under U.S. Government contract DE-AC52-06NA25396 for Los Alamos
+National  Laboratory  (LANL),  which is operated by  Los Alamos National
+Security, LLC  for the U. S. Department of Energy.  The U. S. Government
+has rights to use, reproduce, and distribute this software.  Neither the
+U. S. Government nor Los Alamos National Security, LLC or persons acting
+on their behalf,  make any warranty,  express or implied, or assumes any
+liability for the accuracy, completeness, or usefulness of the software,
+any information pertaining to the software,  or  represents that its use
+would not infringe privately owned rights.
+
+The  software  being licensed  may  be Export Controlled.  It may not be
+distributed  or  used by individuals  or entities prohibited from having
+access to the software package, pursuant to United States export control
+laws and regulations. An export control review and determination must be
+completed before LANS will provide access to the identified Software.
+
+ zone read from optional input file: ../mesh/mesh_outside.zone                                                                                                                                                                               
+ zone read from optional input file: ../mesh/mesh_material.zone                                                                                                                                                                              
+
+ # run.dat                                                                       
+
+
+
+ File purpose - Variable - Unit number - File name
+
+    control       - iocntl -  1 - fehmn.files                                                                                         
+    input         - inpt   - 11 - run.dat                                                                                             
+    geometry      - incoor - 12 - ../mesh/mesh.fehmn                                                                                  
+    zone          - inzone - 11 - run.dat                                                                                             
+    output        - iout   - 14 - run.outp                                                                                            
+    initial state - iread  - 15 - ../init/run.rsto                                                                                    
+    final state   - isave  - 16 - run.rsto                                                                                            
+    time history  - ishis  -  0 - not using                                                                                           
+    time his.(tr) - istrc  -  0 - not using                                                                                           
+    contour plot  - iscon  -  0 - not using                                                                                           
+    con plot (dp) - iscon1 -  0 - not using                                                                                           
+    fe coef stor  - isstor - 21 - ../mesh/mesh.stor                                                                                   
+    input check   - ischk  - 22 - run.chk                                                                                             
+ Value provided to subroutine user: not using
+
+ **** input title : coor **** incoor =  12 ****
+ **** input title : elem **** incoor =  12 ****
+ **** input title : stop **** incoor =  12 ****
+ **** input title : sol  **** inpt =  11 ****
+ **** input title : zone **** inpt =  11 ****
+ zone read from optional input file: ../mesh/mesh_outside.zone                                                                                                                                                                               
+ **** input title : flow **** inpt =  11 ****
+ **** input title : hflx **** inpt =  11 ****
+ **** input title : zone **** inpt =  11 ****
+ zone read from optional input file: ../mesh/mesh_material.zone                                                                                                                                                                              
+ **** input title : perm **** inpt =  11 ****
+ **** input title : rock **** inpt =  11 ****
+ **** input title : cond **** inpt =  11 ****
+ **** input title : time **** inpt =  11 ****
+ **** input title : ctrl **** inpt =  11 ****
+ **** input title : iter **** inpt =  11 ****
+ **** input title : cont **** inpt =  11 ****
+ **** contour format defined  : tec  ****
+ **** input title : stop **** inpt =  11 ****
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ Coefficients read from file ../mesh/mesh.stor
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+ storage for geometric coefficients          8 in common(nr)          8
+ BC to BC connection(s) found (now set=0.0)
+Reading initial condition data from file ../init/run.rsto
+ gmres method chosen 
+ >>>reading nop from file nop.temp .....
+ >>>reading nop was succesful .....
+
+ storage needed for ncon         221443 available     221443
+ storage needed for nop          378443 available     378443
+ storage needed for a matrix     771324 available     771324
+ storage needed for b matrix    1399324 available    2659816
+ storage for acceleration    514998 available     514998
+ storage available for b matrix resized to    1399324<<<<<<
+
+
+ time for reading input, forming coefficients   1.88    
+
+
+
+ **** analysis of input data on file run.chk                          ****
+
+*********************************************************************
+ Time Step         1
+
+                    Timing Information
+           Years              Days         Step Size (Days)
+     0.273785079E-02      1.00000000         1.00000000    
+ Cpu Sec for Time Step =  0.3080     Current Total =    0.3120    
+
+                    Equation Performance
+ Number of N-R Iterations:          1
+ Avg # of Linear Equation Solver Iterations:  10.0
+ Number of Active Nodes:     28611.
+ Total Number of Iterations, N-R:          1 , Solver:         10
+ Phase Changes This Time Step:        0 Total           0
+ Nodes Liq Phase:    28611 change        0
+ Nodes Two Phase:        0 change        0
+ Nodes Gas Phase:         0 change        0
+ Number of restarted time steps            0
+                    Largest Residuals
+ EQ1 R=  0.7359E-08 node=  25910 x=-1920.     y= 1920.     z=-1030.    
+ EQ2 R=  0.2865E-07 node=  25958 x= 1920.     y= 1920.     z=-1030.    
+
+                    Global Mass & Energy Balances
+ Total mass in system at this time:            0.714755E+12 kg
+ Total mass of steam in system at this time:   0.000000E+00 kg
+ Total enthalpy in system at this time:        0.686941E+12 MJ
+
+ Water discharge this time step:   0.000000E+00 kg (0.000000E+00 kg/s)
+ Water input this time step:       0.000000E+00 kg (0.000000E+00 kg/s)
+ Total water discharge:            0.000000E+00 kg (0.000000E+00 kg/s)
+ Total water input:                0.000000E+00 kg (0.000000E+00 kg/s)
+
+ Enthalpy discharge this time step:  0.147400E+05 MJ (0.170601E+00 MJ/s)
+ Enthalpy input this time step:      0.147400E+05 MJ (0.170601E+00 MJ/s)
+ Total enthalpy discharge:           0.147400E+05 MJ (0.170601E+00 MJ/s)
+ Total enthalpy input:               0.147400E+05 MJ (0.170601E+00 MJ/s)
+
+ Net kg water discharge (total out-total in):   0.000000E+00
+ Net MJ energy discharge (total out-total in):   0.000000E+00
+ Conservation Errors:   0.000000E+00 (mass),  -0.317568E-01 (energy)
+*********************************************************************
+ Time Step         2
+
+                    Timing Information
+           Years              Days         Step Size (Days)
+     0.164271047E-01      6.00000000         5.00000000    
+ Cpu Sec for Time Step =  0.2640     Current Total =    0.5960    
+
+                    Equation Performance
+ Number of N-R Iterations:          1
+ Avg # of Linear Equation Solver Iterations:   8.0
+ Number of Active Nodes:     28611.
+ Total Number of Iterations, N-R:          2 , Solver:         18
+ Phase Changes This Time Step:        0 Total           0
+ Nodes Liq Phase:    28611 change        0
+ Nodes Two Phase:        0 change        0
+ Nodes Gas Phase:         0 change        0
+ Number of restarted time steps            0
+                    Largest Residuals
+ EQ1 R=  0.6029E-09 node=  23465 x=-1680.     y=-1920.     z=-1030.    
+ EQ2 R=  0.1157E-07 node=  25955 x= 1680.     y= 1920.     z=-1030.    
+
+                    Global Mass & Energy Balances
+ Total mass in system at this time:            0.714755E+12 kg
+ Total mass of steam in system at this time:   0.000000E+00 kg
+ Total enthalpy in system at this time:        0.686941E+12 MJ
+
+ Water discharge this time step:   0.000000E+00 kg (0.000000E+00 kg/s)
+ Water input this time step:       0.000000E+00 kg (0.000000E+00 kg/s)
+ Total water discharge:            0.000000E+00 kg (0.000000E+00 kg/s)
+ Total water input:                0.000000E+00 kg (0.000000E+00 kg/s)
+
+ Enthalpy discharge this time step:  0.736998E+05 MJ (0.170601E+00 MJ/s)
+ Enthalpy input this time step:      0.736998E+05 MJ (0.170601E+00 MJ/s)
+ Total enthalpy discharge:           0.884397E+05 MJ (0.170601E+00 MJ/s)
+ Total enthalpy input:               0.884397E+05 MJ (0.170601E+00 MJ/s)
+
+ Net kg water discharge (total out-total in):   0.000000E+00
+ Net MJ energy discharge (total out-total in):   0.000000E+00
+ Conservation Errors:   0.000000E+00 (mass),  -0.629045E-01 (energy)
+*********************************************************************
+ Time Step         3
+
+                    Timing Information
+           Years              Days         Step Size (Days)
+     0.848733744E-01      31.0000000         25.0000000    
+ Cpu Sec for Time Step =  0.2480     Current Total =    0.8600    
+
+                    Equation Performance
+ Number of N-R Iterations:          1
+ Avg # of Linear Equation Solver Iterations:   4.0
+ Number of Active Nodes:     28611.
+ Total Number of Iterations, N-R:          3 , Solver:         22
+ Phase Changes This Time Step:        0 Total           0
+ Nodes Liq Phase:    28611 change        0
+ Nodes Two Phase:        0 change        0
+ Nodes Gas Phase:         0 change        0
+ Number of restarted time steps            0
+                    Largest Residuals
+ EQ1 R=  0.1223E-09 node=   5203 x=-2000.     y=-2000.     z=-1240.    
+ EQ2 R=  0.3591E-10 node=   3923 x= 1680.     y= 0.000     z=-1270.    
+
+                    Global Mass & Energy Balances
+ Total mass in system at this time:            0.714755E+12 kg
+ Total mass of steam in system at this time:   0.000000E+00 kg
+ Total enthalpy in system at this time:        0.686941E+12 MJ
+
+ Water discharge this time step:   0.000000E+00 kg (0.000000E+00 kg/s)
+ Water input this time step:       0.000000E+00 kg (0.000000E+00 kg/s)
+ Total water discharge:            0.000000E+00 kg (0.000000E+00 kg/s)
+ Total water input:                0.000000E+00 kg (0.000000E+00 kg/s)
+
+ Enthalpy discharge this time step:  0.368499E+06 MJ (0.170601E+00 MJ/s)
+ Enthalpy input this time step:      0.368499E+06 MJ (0.170601E+00 MJ/s)
+ Total enthalpy discharge:           0.456939E+06 MJ (0.170601E+00 MJ/s)
+ Total enthalpy input:               0.456939E+06 MJ (0.170601E+00 MJ/s)
+
+ Net kg water discharge (total out-total in):   0.000000E+00
+ Net MJ energy discharge (total out-total in):   0.000000E+00
+ Conservation Errors:   0.000000E+00 (mass),  -0.688285E-01 (energy)
+*********************************************************************
+ Time Step         4
+
+                    Timing Information
+           Years              Days         Step Size (Days)
+     0.427104723          156.000000         125.000000    
+ Cpu Sec for Time Step =  0.2720     Current Total =     1.148    
+
+                    Equation Performance
+ Number of N-R Iterations:          1
+ Avg # of Linear Equation Solver Iterations:   3.0
+ Number of Active Nodes:     28611.
+ Total Number of Iterations, N-R:          4 , Solver:         25
+ Phase Changes This Time Step:        0 Total           0
+ Nodes Liq Phase:    28611 change        0
+ Nodes Two Phase:        0 change        0
+ Nodes Gas Phase:         0 change        0
+ Number of restarted time steps            0
+                    Largest Residuals
+ EQ1 R=  0.4724E-10 node=  13005 x= 2000.     y= 2000.     z=-1180.    
+ EQ2 R=  0.4425E-10 node=  10247 x= 1680.     y= 1760.     z=-1210.    
+
+                    Global Mass & Energy Balances
+ Total mass in system at this time:            0.714755E+12 kg
+ Total mass of steam in system at this time:   0.000000E+00 kg
+ Total enthalpy in system at this time:        0.686941E+12 MJ
+
+ Water discharge this time step:   0.000000E+00 kg (0.000000E+00 kg/s)
+ Water input this time step:       0.000000E+00 kg (0.000000E+00 kg/s)
+ Total water discharge:            0.000000E+00 kg (0.000000E+00 kg/s)
+ Total water input:                0.000000E+00 kg (0.000000E+00 kg/s)
+
+ Enthalpy discharge this time step:  0.184249E+07 MJ (0.170601E+00 MJ/s)
+ Enthalpy input this time step:      0.184249E+07 MJ (0.170601E+00 MJ/s)
+ Total enthalpy discharge:           0.229943E+07 MJ (0.170601E+00 MJ/s)
+ Total enthalpy input:               0.229943E+07 MJ (0.170601E+00 MJ/s)
+
+ Net kg water discharge (total out-total in):   0.000000E+00
+ Net MJ energy discharge (total out-total in):   0.000000E+00
+ Conservation Errors:   0.000000E+00 (mass),  -0.699505E-01 (energy)
+*********************************************************************
+ Time Step         5
+
+                    Timing Information
+           Years              Days         Step Size (Days)
+      2.13826146          781.000000         625.000000    
+ Cpu Sec for Time Step =  0.2440     Current Total =     1.412    
+
+                    Equation Performance
+ Number of N-R Iterations:          1
+ Avg # of Linear Equation Solver Iterations:   4.0
+ Number of Active Nodes:     28611.
+ Total Number of Iterations, N-R:          5 , Solver:         29
+ Phase Changes This Time Step:        0 Total           0
+ Nodes Liq Phase:    28611 change        0
+ Nodes Two Phase:        0 change        0
+ Nodes Gas Phase:         0 change        0
+ Number of restarted time steps            0
+                    Largest Residuals
+ EQ1 R=  0.1997E-10 node=   7853 x= 1920.     y=-2000.     z=-1210.    
+ EQ2 R=  0.1497E-09 node=  18154 x= 1840.     y= 1920.     z=-1120.    
+
+                    Global Mass & Energy Balances
+ Total mass in system at this time:            0.714755E+12 kg
+ Total mass of steam in system at this time:   0.000000E+00 kg
+ Total enthalpy in system at this time:        0.686940E+12 MJ
+
+ Water discharge this time step:   0.000000E+00 kg (0.000000E+00 kg/s)
+ Water input this time step:       0.000000E+00 kg (0.000000E+00 kg/s)
+ Total water discharge:            0.000000E+00 kg (0.000000E+00 kg/s)
+ Total water input:                0.000000E+00 kg (0.000000E+00 kg/s)
+
+ Enthalpy discharge this time step:  0.921247E+07 MJ (0.170601E+00 MJ/s)
+ Enthalpy input this time step:      0.921247E+07 MJ (0.170601E+00 MJ/s)
+ Total enthalpy discharge:           0.115119E+08 MJ (0.170601E+00 MJ/s)
+ Total enthalpy input:               0.115119E+08 MJ (0.170601E+00 MJ/s)
+
+ Net kg water discharge (total out-total in):   0.000000E+00
+ Net MJ energy discharge (total out-total in):   0.931323E-09
+ Conservation Errors:   0.000000E+00 (mass),  -0.700598E-01 (energy)
+*********************************************************************
+ Time Step         6
+
+                    Timing Information
+           Years              Days         Step Size (Days)
+      10.6940452          3906.00000         3125.00000    
+ Cpu Sec for Time Step =  0.2680     Current Total =     1.700    
+
+                    Equation Performance
+ Number of N-R Iterations:          1
+ Avg # of Linear Equation Solver Iterations:   7.0
+ Number of Active Nodes:     28611.
+ Total Number of Iterations, N-R:          6 , Solver:         36
+ Phase Changes This Time Step:        0 Total           0
+ Nodes Liq Phase:    28611 change        0
+ Nodes Two Phase:        0 change        0
+ Nodes Gas Phase:         0 change        0
+ Number of restarted time steps            0
+                    Largest Residuals
+ EQ1 R=  0.1331E-10 node=   5252 x= 1920.     y=-2000.     z=-1240.    
+ EQ2 R=  0.3224E-09 node=   2654 x=-1920.     y=-1920.     z=-1270.    
+
+                    Global Mass & Energy Balances
+ Total mass in system at this time:            0.714755E+12 kg
+ Total mass of steam in system at this time:   0.000000E+00 kg
+ Total enthalpy in system at this time:        0.686937E+12 MJ
+
+ Water discharge this time step:   0.000000E+00 kg (0.000000E+00 kg/s)
+ Water input this time step:       0.000000E+00 kg (0.000000E+00 kg/s)
+ Total water discharge:            0.000000E+00 kg (0.000000E+00 kg/s)
+ Total water input:                0.000000E+00 kg (0.000000E+00 kg/s)
+
+ Enthalpy discharge this time step:  0.460624E+08 MJ (0.170601E+00 MJ/s)
+ Enthalpy input this time step:      0.460624E+08 MJ (0.170601E+00 MJ/s)
+ Total enthalpy discharge:           0.575743E+08 MJ (0.170601E+00 MJ/s)
+ Total enthalpy input:               0.575743E+08 MJ (0.170601E+00 MJ/s)
+
+ Net kg water discharge (total out-total in):   0.000000E+00
+ Net MJ energy discharge (total out-total in):   0.186265E-08
+ Conservation Errors:   0.000000E+00 (mass),  -0.695206E-01 (energy)
+*********************************************************************
+ Time Step         7
+
+                    Timing Information
+           Years              Days         Step Size (Days)
+      53.4729637          19531.0000         15625.0000    
+ Cpu Sec for Time Step =  0.3040     Current Total =     2.020    
+
+                    Equation Performance
+ Number of N-R Iterations:          1
+ Avg # of Linear Equation Solver Iterations:  11.0
+ Number of Active Nodes:     28611.
+ Total Number of Iterations, N-R:          7 , Solver:         47
+ Phase Changes This Time Step:        0 Total           0
+ Nodes Liq Phase:    28611 change        0
+ Nodes Two Phase:        0 change        0
+ Nodes Gas Phase:         0 change        0
+ Number of restarted time steps            0
+                    Largest Residuals
+ EQ1 R=  0.5935E-10 node=  13016 x=-1200.     y=-2000.     z=-1150.    
+ EQ2 R=  0.1531E-05 node=  13016 x=-1200.     y=-2000.     z=-1150.    
+
+                    Global Mass & Energy Balances
+ Total mass in system at this time:            0.714755E+12 kg
+ Total mass of steam in system at this time:   0.000000E+00 kg
+ Total enthalpy in system at this time:        0.686922E+12 MJ
+
+ Water discharge this time step:   0.000000E+00 kg (0.000000E+00 kg/s)
+ Water input this time step:       0.000000E+00 kg (0.000000E+00 kg/s)
+ Total water discharge:            0.000000E+00 kg (0.000000E+00 kg/s)
+ Total water input:                0.000000E+00 kg (0.000000E+00 kg/s)
+
+ Enthalpy discharge this time step:  0.230312E+09 MJ (0.170601E+00 MJ/s)
+ Enthalpy input this time step:      0.230312E+09 MJ (0.170601E+00 MJ/s)
+ Total enthalpy discharge:           0.287886E+09 MJ (0.170601E+00 MJ/s)
+ Total enthalpy input:               0.287886E+09 MJ (0.170601E+00 MJ/s)
+
+ Net kg water discharge (total out-total in):   0.000000E+00
+ Net MJ energy discharge (total out-total in):   0.000000E+00
+ Conservation Errors:   0.000000E+00 (mass),  -0.667498E-01 (energy)
+*********************************************************************
+ Time Step         8
+
+                    Timing Information
+           Years              Days         Step Size (Days)
+      267.367556          97656.0000         78125.0000    
+ Cpu Sec for Time Step =  0.5160     Current Total =     2.552    
+
+                    Equation Performance
+ Number of N-R Iterations:          2
+ Avg # of Linear Equation Solver Iterations:  10.0
+ Number of Active Nodes:     28611.
+ Total Number of Iterations, N-R:          9 , Solver:         67
+ Phase Changes This Time Step:        0 Total           0
+ Nodes Liq Phase:    28611 change        0
+ Nodes Two Phase:        0 change        0
+ Nodes Gas Phase:         0 change        0
+ Number of restarted time steps            0
+                    Largest Residuals
+ EQ1 R=  0.1563E-12 node=  10484 x= 240.0     y=-1920.     z=-1180.    
+ EQ2 R=  0.6130E-10 node=  10472 x=-720.0     y=-1920.     z=-1180.    
+
+                    Global Mass & Energy Balances
+ Total mass in system at this time:            0.714756E+12 kg
+ Total mass of steam in system at this time:   0.000000E+00 kg
+ Total enthalpy in system at this time:        0.686861E+12 MJ
+
+ Water discharge this time step:   0.000000E+00 kg (0.000000E+00 kg/s)
+ Water input this time step:       0.000000E+00 kg (0.000000E+00 kg/s)
+ Total water discharge:            0.000000E+00 kg (0.000000E+00 kg/s)
+ Total water input:                0.000000E+00 kg (0.000000E+00 kg/s)
+
+ Enthalpy discharge this time step:  0.115156E+10 MJ (0.170601E+00 MJ/s)
+ Enthalpy input this time step:      0.115156E+10 MJ (0.170601E+00 MJ/s)
+ Total enthalpy discharge:           0.143944E+10 MJ (0.170601E+00 MJ/s)
+ Total enthalpy input:               0.143944E+10 MJ (0.170601E+00 MJ/s)
+
+ Net kg water discharge (total out-total in):   0.000000E+00
+ Net MJ energy discharge (total out-total in):  -0.167638E-07
+ Conservation Errors:   0.000000E+00 (mass),  -0.556073E-01 (energy)
+*********************************************************************
+ Time Step         9
+
+                    Timing Information
+           Years              Days         Step Size (Days)
+      1336.84052          488281.000         390625.000    
+ Cpu Sec for Time Step =  0.4920     Current Total =     3.060    
+
+                    Equation Performance
+ Number of N-R Iterations:          2
+ Avg # of Linear Equation Solver Iterations:  11.5
+ Number of Active Nodes:     28611.
+ Total Number of Iterations, N-R:         11 , Solver:         90
+ Phase Changes This Time Step:        0 Total           0
+ Nodes Liq Phase:    28611 change        0
+ Nodes Two Phase:        0 change        0
+ Nodes Gas Phase:         0 change        0
+ Number of restarted time steps            0
+                    Largest Residuals
+ EQ1 R=  0.3730E-12 node=  26011 x=-2000.     y=-2000.     z=-1000.    
+ EQ2 R=  0.1534E-08 node=  23410 x=-2000.     y=-2000.     z=-1030.    
+
+                    Global Mass & Energy Balances
+ Total mass in system at this time:            0.714760E+12 kg
+ Total mass of steam in system at this time:   0.000000E+00 kg
+ Total enthalpy in system at this time:        0.686725E+12 MJ
+
+ Water discharge this time step:   0.000000E+00 kg (0.000000E+00 kg/s)
+ Water input this time step:       0.000000E+00 kg (0.000000E+00 kg/s)
+ Total water discharge:            0.000000E+00 kg (0.000000E+00 kg/s)
+ Total water input:                0.000000E+00 kg (0.000000E+00 kg/s)
+
+ Enthalpy discharge this time step:  0.575779E+10 MJ (0.170601E+00 MJ/s)
+ Enthalpy input this time step:      0.575779E+10 MJ (0.170601E+00 MJ/s)
+ Total enthalpy discharge:           0.719724E+10 MJ (0.170601E+00 MJ/s)
+ Total enthalpy input:               0.719724E+10 MJ (0.170601E+00 MJ/s)
+
+ Net kg water discharge (total out-total in):   0.000000E+00
+ Net MJ energy discharge (total out-total in):   0.197440E-06
+ Conservation Errors:   0.000000E+00 (mass),  -0.299414E-01 (energy)
+*********************************************************************
+ Time Step        10
+
+                    Timing Information
+           Years              Days         Step Size (Days)
+      6684.20534          2441406.00         1953125.00    
+ Cpu Sec for Time Step =  0.4920     Current Total =     3.572    
+
+                    Equation Performance
+ Number of N-R Iterations:          2
+ Avg # of Linear Equation Solver Iterations:  12.0
+ Number of Active Nodes:     28611.
+ Total Number of Iterations, N-R:         13 , Solver:        114
+ Phase Changes This Time Step:        0 Total           0
+ Nodes Liq Phase:    28611 change        0
+ Nodes Two Phase:        0 change        0
+ Nodes Gas Phase:         0 change        0
+ Number of restarted time steps            0
+                    Largest Residuals
+ EQ1 R=  0.1679E-12 node=   7803 x= 2000.     y= 2000.     z=-1240.    
+ EQ2 R=  0.3362E-09 node=  18104 x= 1920.     y= 1840.     z=-1120.    
+
+                    Global Mass & Energy Balances
+ Total mass in system at this time:            0.714762E+12 kg
+ Total mass of steam in system at this time:   0.000000E+00 kg
+ Total enthalpy in system at this time:        0.686631E+12 MJ
+
+ Water discharge this time step:   0.000000E+00 kg (0.000000E+00 kg/s)
+ Water input this time step:       0.000000E+00 kg (0.000000E+00 kg/s)
+ Total water discharge:            0.000000E+00 kg (0.000000E+00 kg/s)
+ Total water input:                0.000000E+00 kg (0.000000E+00 kg/s)
+
+ Enthalpy discharge this time step:  0.287890E+11 MJ (0.170601E+00 MJ/s)
+ Enthalpy input this time step:      0.287890E+11 MJ (0.170601E+00 MJ/s)
+ Total enthalpy discharge:           0.359862E+11 MJ (0.170601E+00 MJ/s)
+ Total enthalpy input:               0.359862E+11 MJ (0.170601E+00 MJ/s)
+
+ Net kg water discharge (total out-total in):   0.000000E+00
+ Net MJ energy discharge (total out-total in):  -0.108778E-05
+ Conservation Errors:   0.000000E+00 (mass),  -0.860659E-02 (energy)
+*********************************************************************
+ Time Step        11
+
+                    Timing Information
+           Years              Days         Step Size (Days)
+      10000.0000          3652500.00         1211094.00    
+ Cpu Sec for Time Step =  0.3120     Current Total =     3.904    
+
+                    Equation Performance
+ Number of N-R Iterations:          1
+ Avg # of Linear Equation Solver Iterations:  15.0
+ Number of Active Nodes:     28611.
+ Total Number of Iterations, N-R:         14 , Solver:        129
+ Phase Changes This Time Step:        0 Total           0
+ Nodes Liq Phase:    28611 change        0
+ Nodes Two Phase:        0 change        0
+ Nodes Gas Phase:         0 change        0
+ Number of restarted time steps            0
+                    Largest Residuals
+ EQ1 R=  0.2180E-10 node=  18298 x= 1120.     y=-1920.     z=-1090.    
+ EQ2 R=  0.9530E-06 node=  20746 x= 1120.     y= 1920.     z=-1090.    
+
+                    Global Mass & Energy Balances
+ Total mass in system at this time:            0.714762E+12 kg
+ Total mass of steam in system at this time:   0.000000E+00 kg
+ Total enthalpy in system at this time:        0.686619E+12 MJ
+
+ Water discharge this time step:   0.000000E+00 kg (0.000000E+00 kg/s)
+ Water input this time step:       0.000000E+00 kg (0.000000E+00 kg/s)
+ Total water discharge:            0.000000E+00 kg (0.000000E+00 kg/s)
+ Total water input:                0.000000E+00 kg (0.000000E+00 kg/s)
+
+ Enthalpy discharge this time step:  0.178515E+11 MJ (0.170601E+00 MJ/s)
+ Enthalpy input this time step:      0.178515E+11 MJ (0.170601E+00 MJ/s)
+ Total enthalpy discharge:           0.538377E+11 MJ (0.170601E+00 MJ/s)
+ Total enthalpy input:               0.538377E+11 MJ (0.170601E+00 MJ/s)
+
+ Net kg water discharge (total out-total in):   0.000000E+00
+ Net MJ energy discharge (total out-total in):   0.121258E-05
+ Conservation Errors:   0.000000E+00 (mass),  -0.597814E-02 (energy)
+
+
+ simulation ended: days   3652500.0000000000000000     timesteps    11
+
+
+ total N-R iterations =         14
+ total solver iterations =        129
+
+
+ total code time(timesteps) =      4.292000
+
+
+ ****---------------------------------------------------------****
+ **** This program for                                        ****
+ ****   Finite Element Heat and Mass Transfer in porous media ****
+ ****---------------------------------------------------------****
+ ****               Version  : FEHM V3.3.0lin 18-01-19 QA:NA  ****
+ ****               End Date : 07/06/2018                     ****
+ ****                   Time : 10:13:54                       ****
+ ****---------------------------------------------------------****

@@ -1,0 +1,10 @@
+input: run.dat
+grida: ../mesh/mesh.fehmn
+stor: ../mesh/mesh.stor
+rsti: ../init/run.rsto
+rsto: run.rsto
+outp: run.outp
+check: run.chk
+root:run
+
+all

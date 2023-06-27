@@ -1,0 +1,10 @@
+input: run.dat
+grida: /scratch/er/bailianchen/azmi/Example_3D/mesh/mesh.fehmn
+stor: /scratch/er/bailianchen/azmi/Example_3D/mesh/mesh.stor
+rsti: /scratch/er/bailianchen/azmi/Example_3D/init/run.rsto
+rsto: run.rsto
+outp: run.outp
+check: run.chk
+root:run
+
+all
