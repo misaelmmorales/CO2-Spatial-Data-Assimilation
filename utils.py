@@ -2,6 +2,7 @@
 ###################################################### IMPORT PACKAGES #################################################
 ########################################################################################################################
 import os
+import sys
 import shutil
 from time import time
 from tqdm import tqdm
@@ -23,10 +24,17 @@ class spatialHM:
         self.verbose     = True
 
     def check_torch_gpu(self):
-        version, cuda_avail = torch.__version__, torch.cuda.is_available()
+        '''
+        Check torch build in python to ensure GPU is available for training.
+        '''
+        torch_version, cuda_avail = torch.__version__, torch.cuda.is_available()
         count, name = torch.cuda.device_count(), torch.cuda.get_device_name()
-        print('Torch version: {}'.format(version))
+        py_version, conda_env_name = sys.version, sys.executable.split('\\')[-2]
+        print('-------------------------------------------------')
+        print('------------------ VERSION INFO -----------------')
+        print('Conda Environment: {} | Python version: {}'.format(conda_env_name, py_version))
+        print('Torch version: {}'.format(torch_version))
         print('Torch build with CUDA? {}'.format(cuda_avail))
-        print('# Device(s) available: {}, Name(s): {}'.format(count, name))
+        print('# Device(s) available: {}, Name(s): {}\n'.format(count, name))
         self.device = torch.device('cuda' if cuda_avail else 'cpu')
         return None
