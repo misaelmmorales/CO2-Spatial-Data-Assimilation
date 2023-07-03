@@ -10,18 +10,25 @@ from tqdm import tqdm
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import torch
+from scipy.io import loadmat, savemat
+from pyesmda import ESMDA
 
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split, KFold
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+
+import torch
   
 class spatialHM:
     def __init__(self):
-        self.return_data = False
+        self.return_data = True
         self.return_plot = True
         self.save_data   = True
         self.verbose     = True
+        
+        self.dim         = 51
+        self.n_ensemble  = 100
+        self.years       = [1,3,5]
 
     def check_torch_gpu(self):
         '''
@@ -38,3 +45,48 @@ class spatialHM:
         print('# Device(s) available: {}, Name(s): {}\n'.format(count, name))
         self.device = torch.device('cuda' if cuda_avail else 'cpu')
         return None
+
+    def load_perms(self):
+        self.perm_ens = np.zeros((self.n_ensemble,self.dim,self.dim))
+        for i in range(self.n_ensemble):
+            self.perm_ens[i] = np.log10(np.array(pd.read_csv('1n3n5/ensemble/3DMODEL/PERMX_{}.inc'.format(i+1))).reshape(self.dim,self.dim))
+        self.perm_true = np.log10(np.array(pd.read_csv('Syn_GroundTruth_Linux/PERMX_true_syn.inc')).reshape(self.dim,self.dim))
+        if self.save_data:
+            np.save('perm_true.npy', self.perm_true)
+            np.save('perm_ens.npy', self.perm_ens)    
+        if self.verbose:
+            print('True Perm: {} | Perm Ensemble: {}'.format(self.perm_true.shape, self.perm_ens.shape))
+        if self.return_data:
+            return self.perm_true, self.perm_ens
+
+    def read_file(self, filename):
+        sat_data, self.sat_map = np.zeros(self.dim*self.dim), np.zeros((self.dim,self.dim))
+        count = 0
+        for lines in open(filename):
+            count += 1
+            lines = lines.rstrip('\n')
+            count_col = 0
+            if count>26011:
+                for e in lines.split():
+                    count_col += 1
+                    if count_col == 5:
+                        sat_data[count-26012] = float(e)
+        for i in range(0,self.dim):
+            for j in range(0,self.dim):
+                self.sat_map[i,j] = sat_data[j+i*self.dim]
+        if self.return_data:
+            return self.sat_map
+    
+    def plot_perm_sat(self, perm, sat, permtitle='Perm', figsize=(25,5), cmaps=['jet','jet']):
+        fig, axs = plt.subplots(1,4,figsize=figsize)
+        ticks, ticklabs = np.linspace(0,50,num=5), np.linspace(0,4000,num=5,dtype='int')
+        imk = axs[0].imshow(perm, cmap=cmaps[0])
+        plt.colorbar(imk, fraction=0.046, pad=0.04)
+        axs[0].set(title=permtitle, xlabel='X [m]', ylabel='Y [m]', xticks=ticks, yticks=ticks,
+                                    xticklabels=ticklabs, yticklabels=ticklabs)
+        for i in range(1,4):
+            ims = axs[i].imshow(sat[i-1], cmap=cmaps[1])
+            plt.colorbar(ims, fraction=0.046, pad=0.04)
+            axs[i].set(title='Year {}'.format(self.years[i-1]), xlabel='X [m]', 
+                                                xticks=ticks, xticklabels=ticklabs, yticks=[])
+        plt.show()
