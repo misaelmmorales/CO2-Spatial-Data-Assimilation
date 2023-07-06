@@ -5,6 +5,8 @@
 ########################## Summer 2023 #########################
 ################################################################
 from utils import *
+
+units = unit_conversion()
 sda = spatialDA()
 sda.check_torch_gpu()
 

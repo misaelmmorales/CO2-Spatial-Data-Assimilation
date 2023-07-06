@@ -5,11 +5,12 @@
 import os, sys, shutil
 from time import time
 from tqdm import tqdm
+from units import *
 
 import torch
 import pandas as pd
 import numpy as np
-import numpy.matlib as matlib
+from numpy.matlib import repmat
 import matplotlib.pyplot as plt
 from scipy.io import loadmat, savemat
 from pyesmda import ESMDA
@@ -22,6 +23,7 @@ octave_cli_path = 'C:/Users/381792/AppData/Local/Programs/GNU Octave/Octave-8.2.
 os.environ['OCTAVE_EXECUTABLE'] = octave_cli_path
 import oct2py
 from oct2py import Oct2Py
+from oct2py import Struct, Cell
 
 class spatialDA:
     def __init__(self):
