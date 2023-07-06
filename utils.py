@@ -1,12 +1,15 @@
 ########################################################################################################################
 ###################################################### IMPORT PACKAGES #################################################
 ########################################################################################################################
+
 import os, sys, shutil
 from time import time
 from tqdm import tqdm
 
-import numpy as np
+import torch
 import pandas as pd
+import numpy as np
+import numpy.matlib as matlib
 import matplotlib.pyplot as plt
 from scipy.io import loadmat, savemat
 from pyesmda import ESMDA
@@ -15,18 +18,22 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split, KFold
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 
-import torch
-  
-class spatialHM:
+octave_cli_path = 'C:/Users/381792/AppData/Local/Programs/GNU Octave/Octave-8.2.0/mingw64/bin/octave-cli.exe'
+os.environ['OCTAVE_EXECUTABLE'] = octave_cli_path
+import oct2py
+from oct2py import Oct2Py
+
+class spatialDA:
     def __init__(self):
-        self.return_data = True
-        self.return_plot = True
-        self.save_data   = True
-        self.verbose     = True
+        self.return_data  = True
+        self.return_plot  = True
+        self.save_data    = True
+        self.verbose      = True
         
-        self.dim         = 51
-        self.n_ensemble  = 100
-        self.years       = [1,3,5]
+        self.dim          = 51
+        self.n_ensemble   = 100
+        self.years        = [1,3,5]
+        self.mrst_address = 'C:/Users/381792/Documents/mrst-2023a/'
 
     def check_torch_gpu(self):
         '''
@@ -43,6 +50,14 @@ class spatialHM:
         print('# Device(s) available: {}, Name(s): {}\n'.format(count, name))
         self.device = torch.device('cuda' if cuda_avail else 'cpu')
         return None
+    
+    def mrst_startup(self):
+        self.oc = Oct2Py()
+        self.oc.warning('off')
+        self.oc.addpath(self.oc.genpath(self.mrst_address))
+        self.oc.eval('startup')
+        if self.return_data:
+            return self.oc
 
     def load_perms(self):
         self.perm_ens = np.zeros((self.n_ensemble,self.dim,self.dim))

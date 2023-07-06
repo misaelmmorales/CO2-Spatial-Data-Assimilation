@@ -1,12 +1,14 @@
 ################################################################
 ################### Spatial Data Assimilation ##################
-################# Misael Morales & Bailian Chen ################
+################# Misael M. Morales ################
 ################# Los Alamos National Laboratoy ################
 ########################## Summer 2023 #########################
 ################################################################
 from utils import *
-sda = spatialHM()
+sda = spatialDA()
 sda.check_torch_gpu()
+
+octave = sda.mrst_startup()
 
 ########################## PROCESSING ##########################
 
