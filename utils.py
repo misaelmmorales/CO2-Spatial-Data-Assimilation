@@ -1,7 +1,6 @@
 ########################################################################################################################
-###################################################### IMPORT PACKAGES #################################################
+################################ SPATIAL DATA ASSIMILATION IN GEOLOGIC CO2 SEQUESTRATION ###############################
 ########################################################################################################################
-
 import os, sys, shutil
 from time import time
 from tqdm import tqdm
@@ -13,11 +12,15 @@ import numpy as np
 from numpy.matlib import repmat
 import matplotlib.pyplot as plt
 from scipy.io import loadmat, savemat
-from pyesmda import ESMDA
+from pyesmda import ESMDA, approximate_cov_mm
 
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split, KFold
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+from skimage.metrics import mean_squared_error as img_mse
+from skimage.metrics import structural_similarity as ssim
+from skimage.metrics import peak_signal_noise_ratio as psnr
+from skimage.metrics import normalized_mutual_information as img_nmi
 
 octave_cli_path = 'C:/Users/381792/AppData/Local/Programs/GNU Octave/Octave-8.2.0/mingw64/bin/octave-cli.exe'
 os.environ['OCTAVE_EXECUTABLE'] = octave_cli_path
@@ -59,25 +62,36 @@ class spatialDA:
         self.oc.addpath(self.oc.genpath(self.mrst_address))
         self.oc.eval('startup')
         if self.return_data:
-            return self.oc
-
-    def load_perm_true_ens(self):
-        self.perm_ens = np.zeros((self.n_ensemble,self.dim,self.dim))
-        for i in range(self.n_ensemble):
-            self.perm_ens[i] = np.log10(np.array(pd.read_csv('1n3n5/ensemble/3DMODEL/PERMX_{}.inc'.format(i+1))).reshape(self.dim,self.dim))
-        self.perm_true = np.log10(np.array(pd.read_csv('Syn_GroundTruth_Linux/PERMX_true_syn.inc')).reshape(self.dim,self.dim))
+            return self.oc       
+        
+    def load_perm_sat_true(self):
+        self.perm_true = np.log10(np.array(pd.read_csv('Syn_GroundTruth_Linux/PERMX_true_syn.inc'))).squeeze()
+        self.sat_true  = np.load('simulations_octave/sat_true.npy').reshape(3,self.dim*self.dim)
         if self.save_data:
-            np.save('perm_true.npy', self.perm_true)
-            np.save('perm_ens.npy', self.perm_ens)    
+            np.save('simulations_octave/perm_true.npy', self.perm_true)
+            np.save('simulations_octave/sat_true.npy', self.sat_true)
         if self.verbose:
-            print('True Perm: {} | Perm Ensemble: {}'.format(self.perm_true.shape, self.perm_ens.shape))
+            print('True Perm: {} | True Saturation: {}'.format(self.perm_true.shape, self.sat_true.shape))
         if self.return_data:
-            return self.perm_true, self.perm_ens
+            return self.perm_true, self.sat_true
+            
+    def load_perm_ens(self):
+        self.perm_ens = np.zeros((self.n_ensemble, self.dim*self.dim))
+        for i in range(self.n_ensemble):
+            self.perm_ens[i] = np.log10(np.array(pd.read_csv('1n3n5/ensemble/3DMODEL/PERMX_{}.inc'.format(i+1)))).squeeze()
+        if self.save_data:
+            np.save('simulations_octave/perm_ens.npy', self.perm_ens)
+        if self.verbose:
+            print('Perm Ensemble: {}'.format(self.perm_ens.shape))
+        if self.return_data:
+            return self.perm_ens
         
     def load_perm_all(self):
-        self.perm_all = np.zeros((self.n_ensemble+1, self.dim, self.dim))
+        self.perm_all = np.zeros((self.n_ensemble+1, self.dim*self.dim))
         for i in range(self.n_ensemble+1):
-            self.perm_all[i] = loadmat('simulations_octave/perm_ensemble/perm_{}.mat'.format(i))['perm'].reshape(self.dim,self.dim)
+            self.perm_all[i] = loadmat('simulations_octave/perm_ensemble/perm_{}.mat'.format(i))['perm'].reshape(self.dim*self.dim)
+        if self.save_data:
+            np.save('simulations_octave/perm_all.npy', self.perm_all)
         if self.verbose:
             print('Perm All shape: {}'.format(self.perm_all.shape))
         if self.return_data:
@@ -101,16 +115,19 @@ class spatialDA:
         if self.return_data:
             return self.sat_map
     
-    def plot_perm_sat(self, perm, sat, permtitle='Perm', figsize=(25,5), cmaps=['jet','jet']):
+    def plot_perm_sat(self, perm, sat, mask=True, permtitle='Perm', figsize=(25,5), interp=['hanning','none'], cmaps=['jet','jet']):
         fig, axs = plt.subplots(1,4,figsize=figsize)
         ticks, ticklabs = np.linspace(0,50,num=5), np.linspace(0,4000,num=5,dtype='int')
-        imk = axs[0].imshow(perm, cmap=cmaps[0])
+        imk = axs[0].imshow(perm.reshape(self.dim,self.dim), cmap=cmaps[0], interpolation=interp[0])      
         plt.colorbar(imk, fraction=0.046, pad=0.04)
-        axs[0].set(title=permtitle, xlabel='X [m]', ylabel='Y [m]', xticks=ticks, yticks=ticks,
-                                    xticklabels=ticklabs, yticklabels=ticklabs)
+        axs[0].set(title=permtitle, xlabel='X [m]', ylabel='Y [m]', xticks=ticks, yticks=ticks, xticklabels=ticklabs, yticklabels=ticklabs)
         for i in range(1,4):
-            ims = axs[i].imshow(sat[i-1], cmap=cmaps[1])
+            s = sat[i-1].reshape(self.dim,self.dim)
+            sm = np.ma.masked_where(s==0,s)
+            if mask:
+                ims = axs[i].imshow(sm, cmap=cmaps[1], interpolation=interp[-1])
+            else:
+                ims = axs[i].imshow(s, cmap=cmaps[1], interpolation=interp[-1])
             plt.colorbar(ims, fraction=0.046, pad=0.04)
-            axs[i].set(title='Year {}'.format(self.years[i-1]), xlabel='X [m]', 
-                                                xticks=ticks, xticklabels=ticklabs, yticks=[])
+            axs[i].set(title='Year {}'.format(self.years[i-1]), xlabel='X [m]', xticks=ticks, xticklabels=ticklabs, yticks=[])
         plt.show()

@@ -1,14 +1,14 @@
-function [saturation] = sim(realization)
+function [saturation] = sim(perm_field)
 
   G = cartGrid([51,51,1], [4000*meter, 4000*meter, 100*meter]);
   G = computeGeometry(G);
 
-  perm_name = sprintf('perm_ensemble/perm_%d', realization);
-  logperm   = load(perm_name).perm';
-  poro      = 10.^((logperm-7)/10);
+  logperm   = perm_field';
   permx     = 10.^logperm*milli*darcy;
   permz     = 0.1*permx;
   perm      = [permx, permx, permz];
+  %poro      = 10.^((logperm-7)/10);        %Kozeny-Carman porosity
+  poro      = repmat(0.15, G.cells.num, 1); %constant porosity
   rock.poro = poro;
   rock.perm = perm;
 
@@ -54,7 +54,7 @@ function [saturation] = sim(realization)
 
   total_time = 5*year;
   timestep   = rampupTimesteps(total_time, year, 3);
-  irate      = (1/3)*sum(poreVolume(G, rock))/(total_time);
+  irate      = (1/3)*sum(poreVolume(G, rock))/total_time;
 
   W = [];
   W = verticalWell(W, G, rock, 25, 25, [] ,...
@@ -77,7 +77,5 @@ function [saturation] = sim(realization)
   end
 
   saturation = sat([4,6,8],:);
-
-  sprintf('Simluation %d DONE!\n', realization)
-
+  
 end
