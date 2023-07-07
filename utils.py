@@ -61,7 +61,7 @@ class spatialDA:
         if self.return_data:
             return self.oc
 
-    def load_perms(self):
+    def load_perm_true_ens(self):
         self.perm_ens = np.zeros((self.n_ensemble,self.dim,self.dim))
         for i in range(self.n_ensemble):
             self.perm_ens[i] = np.log10(np.array(pd.read_csv('1n3n5/ensemble/3DMODEL/PERMX_{}.inc'.format(i+1))).reshape(self.dim,self.dim))
@@ -73,6 +73,15 @@ class spatialDA:
             print('True Perm: {} | Perm Ensemble: {}'.format(self.perm_true.shape, self.perm_ens.shape))
         if self.return_data:
             return self.perm_true, self.perm_ens
+        
+    def load_perm_all(self):
+        self.perm_all = np.zeros((self.n_ensemble+1, self.dim, self.dim))
+        for i in range(self.n_ensemble+1):
+            self.perm_all[i] = loadmat('simulations_octave/perm_ensemble/perm_{}.mat'.format(i))['perm'].reshape(self.dim,self.dim)
+        if self.verbose:
+            print('Perm All shape: {}'.format(self.perm_all.shape))
+        if self.return_data:
+            return self.perm_all
 
     def read_file(self, filename):
         sat_data, self.sat_map = np.zeros(self.dim*self.dim), np.zeros((self.dim,self.dim))

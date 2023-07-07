@@ -35,12 +35,11 @@ function [saturation] = sim(realization)
                                'c'   , [cf_wat, cf_co2] , ...
                                'cR'  , cf_rock          , ...
                                'n'   , [2 2]);
-  srw = 0.27;
-  src = 0.20;
-  fluid.krW = @(s) fluid.krW(max((s-srw)./(1-srw), 0));
-  fluid.krG = @(s) fluid.krG(max((s-src)./(1-src), 0));
-  pe = 5 * kilo * Pascal;
-  pcWG = @(sw) pe * sw.^(-1/2);
+  [srw,src]  = deal(0.27,0.20);
+  fluid.krW  = @(s) fluid.krW(max((s-srw)./(1-srw), 0));
+  fluid.krG  = @(s) fluid.krG(max((s-src)./(1-src), 0));
+  pe         = 5 * kilo * Pascal;
+  pcWG       = @(sw) pe * sw.^(-1/2);
   fluid.pcWG = @(sg) pcWG(max((1-sg-srw)./(1-srw), 1e-5));
 
   bc = [];
@@ -54,7 +53,7 @@ function [saturation] = sim(realization)
                           'sat',      [1,0]);
 
   total_time = 5*year;
-  timestep   = rampupTimesteps(total_time, year, 5);
+  timestep   = rampupTimesteps(total_time, year, 3);
   irate      = (1/3)*sum(poreVolume(G, rock))/(total_time);
 
   W = [];
@@ -69,12 +68,16 @@ function [saturation] = sim(realization)
   schedule.step.val     = timestep;
   schedule.step.control = ones(numel(timestep),1);
 
-  model             = TwoPhaseWaterGasModel(G, rock, fluid);
-  [wellSol, states] = simulateScheduleAD(initState, model, schedule);
+  model       = TwoPhaseWaterGasModel(G, rock, fluid);
+  [~, states] = simulateScheduleAD(initState, model, schedule);
 
-  saturation = zeros(length(timestep), G.cells.num);
+  sat = zeros(length(timestep), G.cells.num);
   for i=1:length(timestep)
-    saturation(i,:) = states{i,1}.s(:,2);
-  endfor
+    sat(i,:) = states{i,1}.s(:,2);
+  end
+
+  saturation = sat([4,6,8],:);
+
+  sprintf('Simluation %d DONE!\n', realization)
 
 end
