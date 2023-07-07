@@ -2,9 +2,10 @@
  ESMDA-GEO
 
 <!-- 
-Windows Terminal: https://github.com/microsoft/terminal/releases
 
-Jutul Darcy: https://github.com/sintefmath/JutulDarcy.jl
+https://pyesmda.readthedocs.io/en/stable/_autosummary/pyesmda.approximate_cov_mm.html#pyesmda.approximate_cov_mm
+
+https://blink1073.github.io/oct2py/source/api.html
 
 Razak-LSI-ESMDA: https://github.com/rsyamil/latent-space-data-assimilation-lsda/blob/main/2d-fluvial/esmda.py
 

@@ -53,7 +53,8 @@ function [saturation] = sim(perm_field)
                           'sat',      [1,0]);
 
   total_time = 5*year;
-  timestep   = rampupTimesteps(total_time, year, 3);
+  timestep   = rampupTimesteps(total_time, year, 5);
+  %timestep = [0.25 0.25 0.5 2 2]*year;
   irate      = (1/3)*sum(poreVolume(G, rock))/total_time;
 
   W = [];
@@ -76,6 +77,7 @@ function [saturation] = sim(perm_field)
     sat(i,:) = states{i,1}.s(:,2);
   end
 
-  saturation = sat([4,6,8],:);
+  saturation = sat([6,8,10],:);
+  %saturation = sat;
   
 end
