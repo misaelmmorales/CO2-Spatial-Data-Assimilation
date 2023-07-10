@@ -66,10 +66,10 @@ class spatialDA:
         
     def load_perm_sat_true(self):
         self.perm_true = np.log10(np.array(pd.read_csv('Syn_GroundTruth_Linux/PERMX_true_syn.inc'))).squeeze()
-        self.sat_true  = np.load('simulations_octave/sat_true.npy').reshape(3,self.dim*self.dim)
+        self.sat_true  = np.load('simulations/sat_true.npy').reshape(3,self.dim*self.dim)
         if self.save_data:
-            np.save('simulations_octave/perm_true.npy', self.perm_true)
-            np.save('simulations_octave/sat_true.npy', self.sat_true)
+            np.save('simulations/perm_true.npy', self.perm_true)
+            np.save('simulations/sat_true.npy', self.sat_true)
         if self.verbose:
             print('True Perm: {} | True Saturation: {}'.format(self.perm_true.shape, self.sat_true.shape))
         if self.return_data:
@@ -80,7 +80,7 @@ class spatialDA:
         for i in range(self.n_ensemble):
             self.perm_ens[i] = np.log10(np.array(pd.read_csv('1n3n5/ensemble/3DMODEL/PERMX_{}.inc'.format(i+1)))).squeeze()
         if self.save_data:
-            np.save('simulations_octave/perm_ens.npy', self.perm_ens)
+            np.save('simulations/perm_ens.npy', self.perm_ens)
         if self.verbose:
             print('Perm Ensemble: {}'.format(self.perm_ens.shape))
         if self.return_data:
@@ -89,9 +89,9 @@ class spatialDA:
     def load_perm_all(self):
         self.perm_all = np.zeros((self.n_ensemble+1, self.dim*self.dim))
         for i in range(self.n_ensemble+1):
-            self.perm_all[i] = loadmat('simulations_octave/perm_ensemble/perm_{}.mat'.format(i))['perm'].reshape(self.dim*self.dim)
+            self.perm_all[i] = loadmat('simulations/perm_ensemble/perm_{}.mat'.format(i))['perm'].reshape(self.dim*self.dim)
         if self.save_data:
-            np.save('simulations_octave/perm_all.npy', self.perm_all)
+            np.save('simulations/perm_all.npy', self.perm_all)
         if self.verbose:
             print('Perm All shape: {}'.format(self.perm_all.shape))
         if self.return_data:
@@ -130,4 +130,17 @@ class spatialDA:
                 ims = axs[i].imshow(s, cmap=cmaps[1], interpolation=interp[-1])
             plt.colorbar(ims, fraction=0.046, pad=0.04)
             axs[i].set(title='Year {}'.format(self.years[i-1]), xlabel='X [m]', xticks=ticks, xticklabels=ticklabs, yticks=[])
+        plt.show()
+        
+    def plot_ens_mean_std(self, titles=['Ensemble Mean','Ensemble Standard Deviation'], figsize=(16,4)):
+        fig, axs = plt.subplots(1, 2, figsize=figsize)
+        ticks, ticklabs = np.linspace(0,50,num=5), np.linspace(0,4000,num=5,dtype='int')
+        im1 = axs[0].imshow(self.perm_ens.mean(0).reshape(51,51), cmap='jet', interpolation='gaussian')
+        im2 = axs[1].imshow(self.perm_ens.std(0).reshape(51,51), cmap='jet', interpolation='gaussian')
+        for i in range(2):
+            axs[i].set(xlabel='X [m]', xticks=ticks, xticklabels=ticklabs, 
+                    ylabel='Y [m]', yticks=ticks, yticklabels=ticklabs,
+                    title=titles[i])
+        plt.colorbar(im1, pad=0.04, fraction=0.046, label='$\mu_k$ [logmD]')
+        plt.colorbar(im2, pad=0.04, fraction=0.046, label='$\sigma^2(k)$ [logmD]')
         plt.show()

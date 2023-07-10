@@ -13,9 +13,11 @@ octave = sda.mrst_startup()
 perm_true, sat_true = sda.load_perm_sat_true()
 perm_ens            = sda.load_perm_ens()
 perm_all            = sda.load_perm_all()
-sda.plot_perm_sat(perm_true, sat_true)
+sat_true_bc         = np.load('true_sat_bc.npy')
+sda.plot_perm_sat(perm_true, sat_true_bc)
+sda.plot_ens_mean_std()
 
-############################# ROM ##############################
+##################### RESERVOIR SIMULATION #####################
 
 
 ######################## PLOTS & PRINTS ########################
