@@ -1,4 +1,4 @@
-function [saturation] = sim(perm_field)
+function [saturation] = resSim(perm_field)
 
   G = cartGrid([51,51,1], [4000*meter, 4000*meter, 100*meter]);
   G = computeGeometry(G);

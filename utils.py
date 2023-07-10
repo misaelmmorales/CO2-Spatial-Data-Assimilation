@@ -9,8 +9,9 @@ from units import *
 import torch
 import pandas as pd
 import numpy as np
-from numpy.matlib import repmat
 import matplotlib.pyplot as plt
+from scipy.linalg import svd as SVD
+from numpy.matlib import repmat
 from scipy.io import loadmat, savemat
 from pyesmda import ESMDA, approximate_cov_mm
 
