@@ -23,7 +23,8 @@ from skimage.metrics import structural_similarity as ssim
 from skimage.metrics import peak_signal_noise_ratio as psnr
 from skimage.metrics import normalized_mutual_information as img_nmi
 
-octave_cli_path = 'C:/Users/381792/AppData/Local/Programs/GNU Octave/Octave-8.2.0/mingw64/bin/octave-cli.exe'
+#octave_cli_path = 'C:/Users/381792/AppData/Local/Programs/GNU Octave/Octave-8.2.0/mingw64/bin/octave-cli.exe'
+octave_cli_path = 'C:/Program Files/GNU Octave/Octave-8.2.0/mingw64/bin/octave-cli-8.2.0'
 os.environ['OCTAVE_EXECUTABLE'] = octave_cli_path
 import oct2py
 from oct2py import Oct2Py
@@ -39,7 +40,8 @@ class spatialDA:
         self.dim          = 51
         self.n_ensemble   = 100
         self.years        = [1,3,5]
-        self.mrst_address = 'C:/Users/381792/Documents/mrst-2023a/'
+        #self.mrst_address = 'C:/Users/381792/Documents/mrst-2023a/'
+        self.mrst_address = 'E:/mrst-2023a'
 
     def check_torch_gpu(self):
         '''
