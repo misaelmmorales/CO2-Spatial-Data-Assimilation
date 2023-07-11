@@ -34,7 +34,7 @@ class spatialDA:
     def __init__(self):
         self.return_data  = True
         self.return_plot  = True
-        self.save_data    = True
+        self.save_data    = False
         self.verbose      = True
         
         self.dim          = 51
@@ -78,16 +78,18 @@ class spatialDA:
         if self.return_data:
             return self.perm_true, self.sat_true
             
-    def load_perm_ens(self):
+    def load_perm_sat_ens(self):
         self.perm_ens = np.zeros((self.n_ensemble, self.dim*self.dim))
         for i in range(self.n_ensemble):
             self.perm_ens[i] = np.log10(np.array(pd.read_csv('1n3n5/ensemble/3DMODEL/PERMX_{}.inc'.format(i+1)))).squeeze()
+            self.sat_ens     = loadmat('simulations/sat_ens.mat')['sat']
         if self.save_data:
             np.save('simulations/perm_ens.npy', self.perm_ens)
+            savemat('simulations/sats_ens.mat', {'sat':self.sat_ens})
         if self.verbose:
-            print('Perm Ensemble: {}'.format(self.perm_ens.shape))
+            print('Perm Ensemble: {} | Saturation Ensemble: {}'.format(self.perm_ens.shape, self.sat_ens.shape))
         if self.return_data:
-            return self.perm_ens
+            return self.perm_ens, self.sat_ens
         
     def load_perm_all(self):
         self.perm_all = np.zeros((self.n_ensemble+1, self.dim*self.dim))
@@ -135,7 +137,7 @@ class spatialDA:
             axs[i].set(title='Year {}'.format(self.years[i-1]), xlabel='X [m]', xticks=ticks, xticklabels=ticklabs, yticks=[])
         plt.show()
         
-    def plot_ens_mean_std(self, titles=['Ensemble Mean','Ensemble Standard Deviation'], figsize=(16,4)):
+    def plot_ens_mean_std(self, titles=['Ensemble Mean','Ensemble Standard Deviation'], figsize=(15,3)):
         fig, axs = plt.subplots(1, 2, figsize=figsize)
         ticks, ticklabs = np.linspace(0,50,num=5), np.linspace(0,4000,num=5,dtype='int')
         im1 = axs[0].imshow(self.perm_ens.mean(0).reshape(51,51), cmap='jet', interpolation='gaussian')
