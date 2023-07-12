@@ -23,8 +23,8 @@ from skimage.metrics import structural_similarity as ssim
 from skimage.metrics import peak_signal_noise_ratio as psnr
 from skimage.metrics import normalized_mutual_information as img_nmi
 
-#octave_cli_path = 'C:/Users/381792/AppData/Local/Programs/GNU Octave/Octave-8.2.0/mingw64/bin/octave-cli.exe'
-octave_cli_path = 'C:/Program Files/GNU Octave/Octave-8.2.0/mingw64/bin/octave-cli-8.2.0'
+octave_cli_path = 'C:/Users/381792/AppData/Local/Programs/GNU Octave/Octave-8.2.0/mingw64/bin/octave-cli.exe'
+#octave_cli_path = 'C:/Program Files/GNU Octave/Octave-8.2.0/mingw64/bin/octave-cli-8.2.0'
 os.environ['OCTAVE_EXECUTABLE'] = octave_cli_path
 import oct2py
 from oct2py import Oct2Py
