@@ -40,8 +40,8 @@ class spatialDA:
         self.dim          = 51
         self.n_ensemble   = 100
         self.years        = [1,3,5]
-        #self.mrst_address = 'C:/Users/381792/Documents/mrst-2023a/'
-        self.mrst_address = 'E:/mrst-2023a'
+        self.mrst_address = 'C:/Users/381792/Documents/mrst-2023a/'
+        #self.mrst_address = 'E:/mrst-2023a'
 
     def check_torch_gpu(self):
         '''
