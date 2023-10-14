@@ -1,4 +1,4 @@
-# SpatialDataAssimilation
+# CO2 Spatial Data Assimilation
  ESMDA-GEO
 
 <!-- 
