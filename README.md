@@ -1,5 +1,6 @@
 # CO2 Spatial Data Assimilation
- ESMDA-GEO
+
+Bailian Chen, Misael M. Morales, Zhiwei Ma, Qinjun Kang, and Rajesh Pawar. (2024). Assimilation of Geophysics-Derived Spatial Data for Model Calibration in Geologic CO2 Sequestration. <em>SPEJ</em>. https://doi.org/10.2118/212975-PA.
 
 <!-- 
 
