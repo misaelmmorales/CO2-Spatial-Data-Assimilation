@@ -2,6 +2,12 @@
 
 Bailian Chen, Misael M. Morales, Zhiwei Ma, Qinjun Kang, and Rajesh Pawar. (2024). Assimilation of Geophysics-Derived Spatial Data for Model Calibration in Geologic CO2 Sequestration. <em>SPEJ</em>. https://doi.org/10.2118/212975-PA.
 
+<p align="center">
+  <img src="https://github.com/misaelmmorales/CO2-Spatial-Data-Assimilation/blob/main/Results_postprocessing/fig6.png" width=800>
+  <img src="https://github.com/misaelmmorales/CO2-Spatial-Data-Assimilation/blob/main/Results_postprocessing/fig8.png" width=800>
+</p> 
+
+
 <!-- 
 
 https://pyesmda.readthedocs.io/en/stable/_autosummary/pyesmda.approximate_cov_mm.html#pyesmda.approximate_cov_mm
